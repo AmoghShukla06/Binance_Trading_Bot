@@ -49,7 +49,7 @@ def validate_price(price: Optional[str], order_type: str) -> Optional[str]:
     LIMIT orders require a positive price.
     MARKET orders don't use price at all (returns None).
     """
-    if order_type == "MARKET":
+    if order_type in ("MARKET", "STOP_MARKET"):
         return None
 
     if price is None:

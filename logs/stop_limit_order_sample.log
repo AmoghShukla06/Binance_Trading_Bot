@@ -1,0 +1,7 @@
+2026-03-28 23:05:14 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 23:05:14 | INFO     | trading_bot.orders | Placing BUY STOP order | symbol=BTCUSDT | qty=1 | price=85000 | stopPrice=84000
+2026-03-28 23:05:14 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP', 'quantity': '1', 'stopPrice': '84000', 'price': '85000', 'timeInForce': 'GTC', 'timestamp': 1774720514381}
+2026-03-28 23:05:15 | DEBUG    | trading_bot.client | ← HTTP 200 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"orderId":13002634901,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"xK9mLpQrT2nVwA5BcYdZe8","price":"85000.00","avgPrice":"0.00","origQty":"1.000","executedQty":"0.000","cumQty":"0.000","cumQuote":"0.00000","timeInForce":"GTC","type":"STOP","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"84000.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"STOP","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateTime":1774720515042}
+2026-03-28 23:05:15 | INFO     | trading_bot.client | ← Response OK | status=200
+2026-03-28 23:05:15 | INFO     | trading_bot.orders | Order placed successfully | orderId=13002634901 | status=NEW | executedQty=0.000 | avgPrice=0.00
+2026-03-28 23:05:15 | DEBUG    | trading_bot.client | HTTP session closed.

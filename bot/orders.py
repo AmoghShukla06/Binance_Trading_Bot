@@ -1,6 +1,5 @@
 import logging
 from typing import Any, Dict, Optional
-
 from .client import BinanceFuturesClient
 
 logger = logging.getLogger("trading_bot.orders")

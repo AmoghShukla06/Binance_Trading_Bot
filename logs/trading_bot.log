@@ -30,3 +30,15 @@
 2026-03-28 22:47:12 | INFO     | trading_bot.client | ← Response OK | status=200
 2026-03-28 22:47:12 | INFO     | trading_bot.orders | Order placed successfully | orderId=13002598274 | status=NEW | executedQty=0.000 | avgPrice=0.00
 2026-03-28 22:47:12 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 23:04:20 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 23:04:20 | INFO     | trading_bot.orders | Placing BUY STOP order | symbol=BTCUSDT | qty=1 | price=85000 | stopPrice=84000
+2026-03-28 23:04:20 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP', 'quantity': '1', 'stopPrice': '84000', 'price': '85000', 'timeInForce': 'GTC', 'timestamp': 1774719260081}
+2026-03-28 23:04:21 | DEBUG    | trading_bot.client | ← HTTP 400 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"code":-4120,"msg":"Order type not supported for this endpoint. Please use the Algo Order API endpoints instead."}
+2026-03-28 23:04:21 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 23:04:21 | ERROR    | trading_bot | Binance API error: [-4120] Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-03-28 23:05:01 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 23:05:01 | INFO     | trading_bot.orders | Placing SELL STOP_MARKET order | symbol=BTCUSDT | qty=1 | price=N/A | stopPrice=75000
+2026-03-28 23:05:01 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'STOP_MARKET', 'quantity': '1', 'stopPrice': '75000', 'timestamp': 1774719301308}
+2026-03-28 23:05:01 | DEBUG    | trading_bot.client | ← HTTP 400 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"code":-4120,"msg":"Order type not supported for this endpoint. Please use the Algo Order API endpoints instead."}
+2026-03-28 23:05:01 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 23:05:01 | ERROR    | trading_bot | Binance API error: [-4120] Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
