@@ -1,0 +1,32 @@
+2026-03-28 00:25:42 | ERROR    | trading_bot | Validation error: Price is required for LIMIT orders.
+2026-03-28 22:44:56 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 22:44:56 | INFO     | trading_bot.client | → GET /fapi/v2/account | params={'timestamp': 1774718096283}
+2026-03-28 22:44:57 | DEBUG    | trading_bot.client | ← HTTP 200 | url=https://testnet.binancefuture.com/fapi/v2/account | body={"feeTier":0,"canTrade":true,"canDeposit":true,"canWithdraw":true,"feeBurn":true,"tradeGroupId":-1,"updateTime":0,"multiAssetsMargin":false,"totalInitialMargin":"0.00000000","totalMaintMargin":"0.00000000","totalWalletBalance":"5000.00000000","totalUnrealizedProfit":"0.00000000","totalMarginBalance":"5000.00000000","totalPositionInitialMargin":"0.00000000","totalOpenOrderInitialMargin":"0.00000000","totalCrossWalletBalance":"5000.00000000","totalCrossUnPnl":"0.00000000","availableBalance":"5000.
+2026-03-28 22:44:57 | INFO     | trading_bot.client | ← Response OK | status=200
+2026-03-28 22:44:57 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 22:45:16 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 22:45:16 | INFO     | trading_bot.orders | Placing BUY MARKET order | symbol=BTCUSDT | qty=0.001 | price=N/A | stopPrice=N/A
+2026-03-28 22:45:16 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.001', 'timestamp': 1774718116725}
+2026-03-28 22:45:17 | DEBUG    | trading_bot.client | ← HTTP 400 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"code":-4164,"msg":"Order's notional must be no smaller than 100 (unless you choose reduce only)."}
+2026-03-28 22:45:17 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 22:45:17 | ERROR    | trading_bot | Binance API error: [-4164] Order's notional must be no smaller than 100 (unless you choose reduce only).
+2026-03-28 22:45:36 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 22:45:36 | INFO     | trading_bot.orders | Placing BUY MARKET order | symbol=BTCUSDT | qty=100 | price=N/A | stopPrice=N/A
+2026-03-28 22:45:36 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '100', 'timestamp': 1774718136148}
+2026-03-28 22:45:36 | DEBUG    | trading_bot.client | ← HTTP 400 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"code":-2019,"msg":"Margin is insufficient."}
+2026-03-28 22:45:36 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 22:45:36 | ERROR    | trading_bot | Binance API error: [-2019] Margin is insufficient.
+2026-03-28 22:46:52 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 22:46:52 | INFO     | trading_bot.orders | Placing BUY MARKET order | symbol=BTCUSDT | qty=1 | price=N/A | stopPrice=N/A
+2026-03-28 22:46:52 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '1', 'timestamp': 1774718212057}
+2026-03-28 22:46:52 | DEBUG    | trading_bot.client | ← HTTP 200 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"orderId":13002597867,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"Z0FnFSKEikAT8QGVFZFmT7","price":"0.00","avgPrice":"0.00","origQty":"1.000","executedQty":"0.000","cumQty":"0.000","cumQuote":"0.00000","timeInForce":"GTC","type":"MARKET","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"MARKET","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateTim
+2026-03-28 22:46:52 | INFO     | trading_bot.client | ← Response OK | status=200
+2026-03-28 22:46:52 | INFO     | trading_bot.orders | Order placed successfully | orderId=13002597867 | status=NEW | executedQty=0.000 | avgPrice=0.00
+2026-03-28 22:46:52 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 22:47:11 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 22:47:11 | INFO     | trading_bot.orders | Placing SELL LIMIT order | symbol=BTCUSDT | qty=1 | price=80000 | stopPrice=N/A
+2026-03-28 22:47:11 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '1', 'price': '80000', 'timeInForce': 'GTC', 'timestamp': 1774718231948}
+2026-03-28 22:47:12 | DEBUG    | trading_bot.client | ← HTTP 200 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"orderId":13002598274,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"m0AIRRq7QG6BI58WwmJSzc","price":"80000.00","avgPrice":"0.00","origQty":"1.000","executedQty":"0.000","cumQty":"0.000","cumQuote":"0.00000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"update
+2026-03-28 22:47:12 | INFO     | trading_bot.client | ← Response OK | status=200
+2026-03-28 22:47:12 | INFO     | trading_bot.orders | Order placed successfully | orderId=13002598274 | status=NEW | executedQty=0.000 | avgPrice=0.00
+2026-03-28 22:47:12 | DEBUG    | trading_bot.client | HTTP session closed.
