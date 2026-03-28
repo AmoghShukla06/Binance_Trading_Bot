@@ -42,3 +42,29 @@
 2026-03-28 23:05:01 | DEBUG    | trading_bot.client | ← HTTP 400 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"code":-4120,"msg":"Order type not supported for this endpoint. Please use the Algo Order API endpoints instead."}
 2026-03-28 23:05:01 | DEBUG    | trading_bot.client | HTTP session closed.
 2026-03-28 23:05:01 | ERROR    | trading_bot | Binance API error: [-4120] Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-03-28 23:18:00 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 23:18:00 | INFO     | trading_bot.orders | Placing BUY MARKET order | symbol=BTCUSDT | qty=1 | price=N/A | stopPrice=N/A
+2026-03-28 23:18:00 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '1', 'timestamp': 1774720080786}
+2026-03-28 23:18:01 | DEBUG    | trading_bot.client | ← HTTP 400 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"code":-2019,"msg":"Margin is insufficient."}
+2026-03-28 23:18:01 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 23:18:01 | ERROR    | trading_bot | Binance API error: [-2019] Margin is insufficient.
+2026-03-28 23:19:48 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 23:19:48 | INFO     | trading_bot.orders | Placing BUY MARKET order | symbol=BTCUSDT | qty=1 | price=N/A | stopPrice=N/A
+2026-03-28 23:19:48 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '1', 'timestamp': 1774720188890}
+2026-03-28 23:19:49 | DEBUG    | trading_bot.client | ← HTTP 400 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"code":-2019,"msg":"Margin is insufficient."}
+2026-03-28 23:19:49 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 23:19:49 | ERROR    | trading_bot | Binance API error: [-2019] Margin is insufficient.
+2026-03-28 23:20:24 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 23:20:24 | INFO     | trading_bot.orders | Placing BUY MARKET order | symbol=BTCUSDT | qty=0.1 | price=N/A | stopPrice=N/A
+2026-03-28 23:20:24 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.1', 'timestamp': 1774720224483}
+2026-03-28 23:20:24 | DEBUG    | trading_bot.client | ← HTTP 200 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"orderId":13002649606,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"z6gxRVcop0HIvDghsCm3Ds","price":"0.00","avgPrice":"0.00","origQty":"0.100","executedQty":"0.000","cumQty":"0.000","cumQuote":"0.00000","timeInForce":"GTC","type":"MARKET","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"MARKET","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateTim
+2026-03-28 23:20:24 | INFO     | trading_bot.client | ← Response OK | status=200
+2026-03-28 23:20:24 | INFO     | trading_bot.orders | Order placed successfully | orderId=13002649606 | status=NEW | executedQty=0.000 | avgPrice=0.00
+2026-03-28 23:20:24 | DEBUG    | trading_bot.client | HTTP session closed.
+2026-03-28 23:21:04 | DEBUG    | trading_bot.client | BinanceFuturesClient initialised | base_url=https://testnet.binancefuture.com
+2026-03-28 23:21:04 | INFO     | trading_bot.orders | Placing SELL LIMIT order | symbol=BTCUSDT | qty=0.1 | price=80000 | stopPrice=N/A
+2026-03-28 23:21:04 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.1', 'price': '80000', 'timeInForce': 'GTC', 'timestamp': 1774720264597}
+2026-03-28 23:21:05 | DEBUG    | trading_bot.client | ← HTTP 200 | url=https://testnet.binancefuture.com/fapi/v1/order | body={"orderId":13002650575,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"sZR7JcawioJIGeB8G3JrXn","price":"80000.00","avgPrice":"0.00","origQty":"0.100","executedQty":"0.000","cumQty":"0.000","cumQuote":"0.00000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"update
+2026-03-28 23:21:05 | INFO     | trading_bot.client | ← Response OK | status=200
+2026-03-28 23:21:05 | INFO     | trading_bot.orders | Order placed successfully | orderId=13002650575 | status=NEW | executedQty=0.000 | avgPrice=0.00
+2026-03-28 23:21:05 | DEBUG    | trading_bot.client | HTTP session closed.
