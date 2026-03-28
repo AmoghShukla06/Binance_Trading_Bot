@@ -1,6 +1,6 @@
 # Binance Futures Testnet Trading Bot
 
-A clean, production-style Python CLI for placing orders on the [Binance Futures Testnet](https://testnet.binancefuture.com) (USDT-M perpetuals).
+A Python CLI for placing orders on the [Binance Futures Testnet](https://testnet.binancefuture.com) (USDT-M perpetuals), with an enhanced Rich-powered interface.
 
 ---
 
@@ -8,13 +8,26 @@ A clean, production-style Python CLI for placing orders on the [Binance Futures 
 
 | Category | Details |
 |---|---|
-| **Order types** | MARKET, LIMIT, STOP_MARKET (bonus) |
+| **Order types** | MARKET, LIMIT, STOP_MARKET |
 | **Sides** | BUY, SELL |
-| **CLI framework** | Click (interactive prompts, colour output, `--help`) |
+| **CLI framework** | Click + Rich (interactive menus, coloured panels, rich tables) |
+| **Interactive mode** | Run `python cli.py` with no args to get a guided menu prompt |
 | **Auth** | HMAC-SHA256 signed requests |
 | **Logging** | Rotating file log (`logs/trading_bot.log`) + coloured console |
-| **Error handling** | Validation errors, API errors, network failures |
+| **Error handling** | Validation errors, API errors, network failures — all displayed in styled panels |
 | **Structure** | Separated client / service / validation / CLI layers |
+
+---
+
+## Screenshots
+
+**Interactive Menu → MARKET Order:**
+
+![MARKET order via interactive CLI](assets/cli_market_order.png)
+
+**Interactive Menu → LIMIT Order:**
+
+![LIMIT order via interactive CLI](assets/cli_limit_order.png)
 
 ---
 
@@ -28,8 +41,8 @@ trading_bot/
 │   ├── orders.py          # Order service layer (param building, formatting)
 │   ├── validators.py      # Input validation (raises ValueError)
 │   └── logging_config.py  # Rotating file + console logging setup
-├── cli.py                 # Click CLI entry point
-├── logs/                  # Auto-created; contains trading_bot.log
+├── cli.py                 # Click + Rich CLI entry point
+├── logs/                  # Auto-created; contains trading_bot.log + samples
 ├── requirements.txt
 └── README.md
 ```
@@ -41,15 +54,14 @@ trading_bot/
 ### 1. Get Testnet credentials
 
 1. Register / log in at <https://testnet.binancefuture.com>
-2. Go to **API Management** and generate a new API key + secret
-3. Keep both values handy for the next step
+2. Go to **API Management** and generate an API key + secret
+3. Keep both values handy
 
 ### 2. Install dependencies
 
 ```bash
-# Create a virtual environment (recommended)
 python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 
 pip install -r requirements.txt
 ```
@@ -63,7 +75,7 @@ export BINANCE_API_KEY="your_api_key_here"
 export BINANCE_API_SECRET="your_api_secret_here"
 ```
 
-**Option B — CLI flags (every command)**
+**Option B — CLI flags**
 
 ```bash
 python cli.py --api-key YOUR_KEY --api-secret YOUR_SECRET place ...
@@ -79,36 +91,30 @@ All commands must be run from inside the `trading_bot/` directory.
 cd trading_bot
 ```
 
+### Interactive menu (no flags needed)
+
+```bash
+python cli.py
+```
+
+Launches a guided menu — prompts for action → symbol → side → type → quantity, then shows a rich preview before sending.
+
 ### Place a MARKET order
 
 ```bash
-python cli.py place \
-  --symbol BTCUSDT \
-  --side BUY \
-  --type MARKET \
-  --quantity 0.001
+python cli.py place --symbol BTCUSDT --side BUY --type MARKET --quantity 1
 ```
 
 ### Place a LIMIT order
 
 ```bash
-python cli.py place \
-  --symbol BTCUSDT \
-  --side SELL \
-  --type LIMIT \
-  --quantity 0.001 \
-  --price 80000
+python cli.py place --symbol BTCUSDT --side SELL --type LIMIT --quantity 1 --price 80000
 ```
 
-### Place a STOP_MARKET order (bonus)
+### Place a STOP_MARKET order
 
 ```bash
-python cli.py place \
-  --symbol BTCUSDT \
-  --side SELL \
-  --type STOP_MARKET \
-  --quantity 0.001 \
-  --stop-price 75000
+python cli.py place --symbol BTCUSDT --side SELL --type STOP_MARKET --quantity 1 --stop-price 75000
 ```
 
 ### View account balances
@@ -120,13 +126,13 @@ python cli.py account
 ### Increase log verbosity
 
 ```bash
-python cli.py --log-level DEBUG place --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
+python cli.py --log-level DEBUG place --symbol BTCUSDT --side BUY --type MARKET --quantity 1
 ```
 
-### Skip interactive confirmation (pipe-friendly)
+### Skip interactive confirmation
 
 ```bash
-echo "y" | python cli.py place --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
+echo "y" | python cli.py place --symbol BTCUSDT --side BUY --type MARKET --quantity 1
 ```
 
 ---
@@ -164,31 +170,48 @@ Commands:
 
 ---
 
+## Enhanced CLI UX
+
+The bot uses [Rich](https://github.com/Textualize/rich) for a modern terminal experience:
+
+- **Order Preview Panel** — shows a formatted table of your order before submission
+- **Confirmation prompt** — coloured yes/no prompt before any order is sent
+- **Order Response Panel** — green bordered table with full Binance response
+- **Error Panels** — red bordered panels with Binance error code + message
+- **Account Table** — colour-coded table of non-zero asset balances
+- **Interactive mode** — `python cli.py` with no args launches a looping menu
+
+---
+
 ## Logging
 
-Log files are written to `logs/trading_bot.log` (auto-created).  
+Log files are written to `logs/trading_bot.log` (auto-created).
 The file rotates at 5 MB and keeps 3 backups.
 
-Each log entry includes: timestamp, level, logger name, and message.
-
 ```
-2025-01-01 12:00:00 | INFO     | trading_bot.orders | Placing BUY MARKET order | symbol=BTCUSDT | qty=0.001 | price=N/A | stopPrice=N/A
-2025-01-01 12:00:00 | INFO     | trading_bot.client | → POST /fapi/v1/order | params={...}
-2025-01-01 12:00:00 | INFO     | trading_bot.client | ← Response OK | status=200
-2025-01-01 12:00:00 | INFO     | trading_bot.orders | Order placed successfully | orderId=... | status=NEW | executedQty=0.001 | avgPrice=...
+2026-03-28 22:46:52 | INFO  | trading_bot.orders | Placing BUY MARKET order | symbol=BTCUSDT | qty=1 | price=N/A | stopPrice=N/A
+2026-03-28 22:46:52 | INFO  | trading_bot.client | → POST /fapi/v1/order | params={...}
+2026-03-28 22:46:52 | INFO  | trading_bot.client | ← Response OK | status=200
+2026-03-28 22:46:52 | INFO  | trading_bot.orders | Order placed successfully | orderId=13002597867 | status=NEW
 ```
 
-Log files from sample testnet orders are included in the `logs/` directory.
+Sample log files from real testnet runs are in `logs/`:
+
+| File | Description |
+|---|---|
+| `market_order_sample.log` | BUY MARKET qty=1, orderId 13002597867 |
+| `limit_order_sample.log` | SELL LIMIT qty=1 @80000, orderId 13002598274 |
+| `trading_bot.log` | Full session log including error cases |
 
 ---
 
 ## Assumptions
 
 - Only USDT-M perpetual futures are targeted (endpoint: `/fapi/v1/order`).
-- The testnet does not support all production features (e.g., OCO on futures).
+- The testnet does not support all production features.
 - `timeInForce` is only sent for `LIMIT` orders (Binance rejects it for MARKET).
 - Credentials are **never** logged; only non-signature params are recorded.
-- `STOP_MARKET` uses Binance's native stop-market order type (stop trigger → market fill).
+- Minimum order notional on testnet is **$100** (use qty ≥ 0.002 for BTCUSDT).
 
 ---
 
@@ -196,8 +219,8 @@ Log files from sample testnet orders are included in the `logs/` directory.
 
 | Error type | Behaviour |
 |---|---|
-| Invalid CLI input | Validation message + exit code 1 |
-| Binance API error | Error code + message printed in red + exit 1 |
+| Invalid CLI input | Red validation panel + exit code 1 |
+| Binance API error | Red error panel with code + message + exit 1 |
 | Network timeout | Clear message + exit 1 |
 | Connection failure | Clear message + exit 1 |
 | Unexpected exception | Full traceback in log file + short message on screen |
